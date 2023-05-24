@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <!--<script src="duplicate.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/physx@v0.1.0/dist/physx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.controls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/diarmidmackenzie/instanced-mesh@v0.6.0/src/instanced-mesh.min.js"></script>
+    <script src="link-controls.js"></script>
+</head>
+<body>
+    <a-scene cursor="rayOrigin: mouse">
+        <a-assets>
+            <a-asset-item id="shiba" src="assets/shiba.glb"></a-asset-item>
+            <img id="homeThumbnail" src="assets/house.png">
+        </a-assets>
+        <a-plane position="0 0 0" rotation="-90 0 0" width="1000" height="1000" color="#7BC8A4"></a-plane>
+        <!--<a-entity id="Shiba" gltf-model="#shiba" instanced-mesh="capacity: 10000"></a-entity>-->
+        <a-sky color="#ECECEC"></a-sky>
+        <a-entity position="0 2 -5" link="href: https://mathiasxr.github.io/link-traversal/plane.html; title: My Homepage; image: #homeThumbnail; visualAspectEnabled: true"></a-entity>
+        <!--camera-->
+        <a-entity id="camera-rig">
+            <a-entity id="head"
+                      camera
+                      position="-2 1.6 0"
+                      wasd-controls
+                      look-controls></a-entity>
+            <!--hands-->
+            <!--vive-controls="hand:left; model:true"-->
+            <a-entity id="leftHand" link-controls="hand: left" raycaster="lineColor: red; lineOpacity: 0.5"></a-entity>
+            <!--vive-controls="hand:right; model:true"-->
+            <a-entity id="rightHand" blink-controls="snapTurn:true;cameraRig: #camera-rig" link-controls="hand: right" raycaster="lineColor: red; lineOpacity: 0.5"></a-entity>
+            <!--text-->
+        </a-entity>
+        <a-entity id="counter" text="color: black" position="0 2.5 0" scale="5 5 1"></a-entity>
+    </a-scene>
+</body>
+</html>
